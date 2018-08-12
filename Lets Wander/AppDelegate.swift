@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        //Initial Configure to add the Firebase App configuration
+        FirebaseApp.configure()
+        
+        //Build a Tab Bar Controller
+        window = UIWindow()
+        window?.rootViewController = MainTabBarController()
+        
         return true
     }
 
