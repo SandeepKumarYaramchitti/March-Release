@@ -15,6 +15,7 @@
 		E50592EB206F2AC900CA04B4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50592EA206F2AC900CA04B4 /* Colors.swift */; };
 		E50592EE2078400600CA04B4 /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50592ED2078400600CA04B4 /* LogInController.swift */; };
 		E582B9B0212798C200E34FDC /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582B9AF212798C200E34FDC /* PhotoSelectorController.swift */; };
+		E582B9B22128C8B400E34FDC /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582B9B12128C8B400E34FDC /* PhotoSelectorCell.swift */; };
 		E5D3D25820648BCB00F53423 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D3D25720648BCB00F53423 /* AppDelegate.swift */; };
 		E5D3D25A20648BCB00F53423 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D3D25920648BCB00F53423 /* SignUpController.swift */; };
 		E5D3D25D20648BCB00F53423 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5D3D25B20648BCB00F53423 /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 		E50592EA206F2AC900CA04B4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		E50592ED2078400600CA04B4 /* LogInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
 		E582B9AF212798C200E34FDC /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
+		E582B9B12128C8B400E34FDC /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		E5D3D25420648BCB00F53423 /* Lets Wander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lets Wander.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5D3D25720648BCB00F53423 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5D3D25920648BCB00F53423 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				E582B9AF212798C200E34FDC /* PhotoSelectorController.swift */,
+				E582B9B12128C8B400E34FDC /* PhotoSelectorCell.swift */,
 			);
 			path = "Add Photo";
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				E50592E7206F06D700CA04B4 /* UserProfileHeader.swift in Sources */,
 				E5D3D29020686E4500F53423 /* MainTabBarController.swift in Sources */,
 				E5D3D25820648BCB00F53423 /* AppDelegate.swift in Sources */,
+				E582B9B22128C8B400E34FDC /* PhotoSelectorCell.swift in Sources */,
 				E5D3D28A20648F9B00F53423 /* UIAnchor.swift in Sources */,
 				E50592EE2078400600CA04B4 /* LogInController.swift in Sources */,
 				E5D3D28C2065C14F00F53423 /* UIColor.swift in Sources */,
