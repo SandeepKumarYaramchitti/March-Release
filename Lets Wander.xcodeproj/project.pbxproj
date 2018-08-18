@@ -14,6 +14,7 @@
 		E50592E9206F296400CA04B4 /* UIView+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50592E8206F296400CA04B4 /* UIView+Gradient.swift */; };
 		E50592EB206F2AC900CA04B4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50592EA206F2AC900CA04B4 /* Colors.swift */; };
 		E50592EE2078400600CA04B4 /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50592ED2078400600CA04B4 /* LogInController.swift */; };
+		E582B9B0212798C200E34FDC /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582B9AF212798C200E34FDC /* PhotoSelectorController.swift */; };
 		E5D3D25820648BCB00F53423 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D3D25720648BCB00F53423 /* AppDelegate.swift */; };
 		E5D3D25A20648BCB00F53423 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D3D25920648BCB00F53423 /* SignUpController.swift */; };
 		E5D3D25D20648BCB00F53423 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5D3D25B20648BCB00F53423 /* Main.storyboard */; };
@@ -58,6 +59,7 @@
 		E50592E8206F296400CA04B4 /* UIView+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Gradient.swift"; sourceTree = "<group>"; };
 		E50592EA206F2AC900CA04B4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		E50592ED2078400600CA04B4 /* LogInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
+		E582B9AF212798C200E34FDC /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		E5D3D25420648BCB00F53423 /* Lets Wander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lets Wander.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5D3D25720648BCB00F53423 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5D3D25920648BCB00F53423 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -150,6 +152,14 @@
 			path = LogIn;
 			sourceTree = "<group>";
 		};
+		E582B9AE2127989A00E34FDC /* Add Photo */ = {
+			isa = PBXGroup;
+			children = (
+				E582B9AF212798C200E34FDC /* PhotoSelectorController.swift */,
+			);
+			path = "Add Photo";
+			sourceTree = "<group>";
+		};
 		E5D3D24B20648BCB00F53423 = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +185,7 @@
 		E5D3D25620648BCB00F53423 /* Lets Wander */ = {
 			isa = PBXGroup;
 			children = (
+				E582B9AE2127989A00E34FDC /* Add Photo */,
 				E50592EC20783FDC00CA04B4 /* LogIn */,
 				E50592E5206F06B100CA04B4 /* User Profile */,
 				E5D3D25720648BCB00F53423 /* AppDelegate.swift */,
@@ -522,6 +533,7 @@
 				E5D3D25A20648BCB00F53423 /* SignUpController.swift in Sources */,
 				E50592EB206F2AC900CA04B4 /* Colors.swift in Sources */,
 				E50592E9206F296400CA04B4 /* UIView+Gradient.swift in Sources */,
+				E582B9B0212798C200E34FDC /* PhotoSelectorController.swift in Sources */,
 				E5D3D26020648BCB00F53423 /* Lets_Wander.xcdatamodeld in Sources */,
 				E5D3D2922068700B00F53423 /* UserProfileViewController.swift in Sources */,
 				E50592E7206F06D700CA04B4 /* UserProfileHeader.swift in Sources */,
