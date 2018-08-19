@@ -16,6 +16,7 @@
 		E50592EE2078400600CA04B4 /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50592ED2078400600CA04B4 /* LogInController.swift */; };
 		E582B9B0212798C200E34FDC /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582B9AF212798C200E34FDC /* PhotoSelectorController.swift */; };
 		E582B9B22128C8B400E34FDC /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582B9B12128C8B400E34FDC /* PhotoSelectorCell.swift */; };
+		E582B9B42128D59F00E34FDC /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582B9B32128D59F00E34FDC /* PhotoSelectorHeader.swift */; };
 		E5D3D25820648BCB00F53423 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D3D25720648BCB00F53423 /* AppDelegate.swift */; };
 		E5D3D25A20648BCB00F53423 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D3D25920648BCB00F53423 /* SignUpController.swift */; };
 		E5D3D25D20648BCB00F53423 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5D3D25B20648BCB00F53423 /* Main.storyboard */; };
@@ -62,6 +63,7 @@
 		E50592ED2078400600CA04B4 /* LogInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
 		E582B9AF212798C200E34FDC /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		E582B9B12128C8B400E34FDC /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
+		E582B9B32128D59F00E34FDC /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
 		E5D3D25420648BCB00F53423 /* Lets Wander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lets Wander.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5D3D25720648BCB00F53423 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5D3D25920648BCB00F53423 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			children = (
 				E582B9AF212798C200E34FDC /* PhotoSelectorController.swift */,
 				E582B9B12128C8B400E34FDC /* PhotoSelectorCell.swift */,
+				E582B9B32128D59F00E34FDC /* PhotoSelectorHeader.swift */,
 			);
 			path = "Add Photo";
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				E5D3D2922068700B00F53423 /* UserProfileViewController.swift in Sources */,
 				E50592E7206F06D700CA04B4 /* UserProfileHeader.swift in Sources */,
 				E5D3D29020686E4500F53423 /* MainTabBarController.swift in Sources */,
+				E582B9B42128D59F00E34FDC /* PhotoSelectorHeader.swift in Sources */,
 				E5D3D25820648BCB00F53423 /* AppDelegate.swift in Sources */,
 				E582B9B22128C8B400E34FDC /* PhotoSelectorCell.swift in Sources */,
 				E5D3D28A20648F9B00F53423 /* UIAnchor.swift in Sources */,
