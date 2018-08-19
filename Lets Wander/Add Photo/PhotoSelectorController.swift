@@ -29,6 +29,10 @@ class PhotoSelectorClass: UICollectionViewController, UICollectionViewDelegateFl
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectedImage = images[indexPath.item]
         self.collectionView?.reloadData()
+        
+        //Move the grid to the top
+        let indexPath = IndexPath(item: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
     
     //Fetch photos from the device
@@ -77,11 +81,13 @@ class PhotoSelectorClass: UICollectionViewController, UICollectionViewDelegateFl
   
         }
     }
-    
+    var header: PhotoSelectorHeader?
     //Header ID
+    
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerID", for: indexPath) as! PhotoSelectorHeader
         header.photoImageView.image = selectedImage
+        self.header = header
         let imageManager = PHImageManager.default()
         
         
@@ -157,6 +163,11 @@ class PhotoSelectorClass: UICollectionViewController, UICollectionViewDelegateFl
     //Handle Next button on photo selector
     @objc fileprivate func handleNext(){
         print("Next Next Next")
+        let sharePhotoController = SharePhotoController()
+         sharePhotoController.selectedImage = header?.photoImageView.image
+        navigationController?.pushViewController(sharePhotoController, animated: true)
+       
+        
     }
     
     
