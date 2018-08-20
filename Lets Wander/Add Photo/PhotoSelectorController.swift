@@ -77,8 +77,6 @@ class PhotoSelectorClass: UICollectionViewController, UICollectionViewDelegateFl
                     }
                 })
         }
-        
-  
         }
     }
     var header: PhotoSelectorHeader?
