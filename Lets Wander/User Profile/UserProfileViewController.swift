@@ -22,11 +22,25 @@ class UserProfileViewController: UICollectionViewController,UICollectionViewDele
         registerCollectionCells()
         //SetUp Logout Button
         setUpLogOutButton()
-        fetchPosts()
+        //fetchPosts()
+        fetchOrderedPosts()
         
     }
     
     var posts = [PostModel]()
+    func fetchOrderedPosts() {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let ref = Database.database().reference().child("posts").child(uid)
+        //Implement Pagination at the end of the lession
+        ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
+            guard let dictionary = snapshot.value as? [String: Any] else {return}
+            let post = PostModel(dictionary: dictionary)
+            self.posts.append(post)
+            self.collectionView?.reloadData()
+        }) { (err) in
+            print("Could not fetch ordered posts....")
+        }
+    }
      func fetchPosts() {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let ref = Database.database().reference().child("posts").child(uid)

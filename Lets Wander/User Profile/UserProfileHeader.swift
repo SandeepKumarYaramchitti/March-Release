@@ -10,9 +10,10 @@ import UIKit
 import Firebase
 
 class UserProfileHeader: UICollectionViewCell {
+
     
-    let profileImageView: UIImageView = {
-      let imageView = UIImageView()
+    let profileImageView: CustomImageView = {
+      let imageView = CustomImageView()
       //imageView.backgroundColor = UIColor.red
       return imageView
     }()
@@ -181,32 +182,13 @@ class UserProfileHeader: UICollectionViewCell {
     var user: User? {
         
         didSet{
-            setUpProfileImage()
-            userNameLebel.text = "Sandeep Kumar"
+            guard let profileImageUrl = user?.profileImageUrl else {return}
+            profileImageView.loadImage(urlString: profileImageUrl)
+            //setUpProfileImage()
+            userNameLebel.text = user?.username
+            
         }
         
-    }
-    fileprivate func setUpProfileImage(){
-        
-        guard let profileImageUrl = self.user?.profileImageUrl else {return}
-        guard let url = URL(string: profileImageUrl ) else {return}
-        URLSession.shared.dataTask(with: url) { (data, response, err) in
-            
-            if let err = err {
-                print("Failed to fecth user profile",err)
-                return
-            }
-            print(data ?? "")
-            
-            guard let data = data else {return}
-            let image = UIImage(data: data)
-            DispatchQueue.main.async {
-                self.profileImageView.image = image
-            }
-            
-            }.resume()
-        
-
     }
     
     required init?(coder aDecoder: NSCoder) {
