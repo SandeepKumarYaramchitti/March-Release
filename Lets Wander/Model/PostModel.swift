@@ -9,8 +9,12 @@
 import Foundation
 
 struct PostModel {
+    let user: User
     let imageURL: String
-    init(dictionary: [String: Any]) {
+    let capTion: String
+    init(user: User, dictionary: [String: Any]) {
+        self.user = user
         self.imageURL = dictionary["ImageUrl"] as? String ?? ""
+        self.capTion = dictionary["Caption"] as? String ?? ""
     }
 }

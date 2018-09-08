@@ -53,7 +53,7 @@ class SharePhotoController: UIViewController {
         guard let currentUID = Auth.auth().currentUser?.uid else {return}
         let userPostRef = Database.database().reference().child("posts").child(currentUID)
         let ref = userPostRef.childByAutoId()
-        let values = ["ImageUrl": imageURL, "Caption": caption, "ImageWidth":postImage.size.width, "ImageHeight": postImage.size.height, "CreationDate": Date().timeIntervalSince1970] as [String : Any]
+        let values = ["ImageUrl": imageURL, "Caption": caption, "ImageWidth":postImage.size.width, "ImageHeight": postImage.size.height, "creationDate": Date().timeIntervalSince1970] as [String : Any]
         ref.updateChildValues(values) { (err, ref) in
             if let err = err {
                 print("Error is updating firebase DB", err)

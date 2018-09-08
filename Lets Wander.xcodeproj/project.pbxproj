@@ -15,6 +15,10 @@
 		E50592EB206F2AC900CA04B4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50592EA206F2AC900CA04B4 /* Colors.swift */; };
 		E50592EE2078400600CA04B4 /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50592ED2078400600CA04B4 /* LogInController.swift */; };
 		E5168CD52131BBA4007AD570 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5168CD42131BBA4007AD570 /* CustomImageView.swift */; };
+		E5168CD82132DC1A007AD570 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5168CD72132DC1A007AD570 /* HomeViewController.swift */; };
+		E5168CDA2132DD8C007AD570 /* HomeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5168CD92132DD8C007AD570 /* HomeViewCell.swift */; };
+		E53455C621421567004C611B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53455C521421567004C611B /* User.swift */; };
+		E53455C82143F901004C611B /* FireBaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53455C72143F901004C611B /* FireBaseUtils.swift */; };
 		E58238B0212A70C1009AB631 /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58238AF212A70C1009AB631 /* UserProfilePhotoCell.swift */; };
 		E582B9B0212798C200E34FDC /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582B9AF212798C200E34FDC /* PhotoSelectorController.swift */; };
 		E582B9B22128C8B400E34FDC /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582B9B12128C8B400E34FDC /* PhotoSelectorCell.swift */; };
@@ -66,6 +70,10 @@
 		E50592EA206F2AC900CA04B4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		E50592ED2078400600CA04B4 /* LogInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
 		E5168CD42131BBA4007AD570 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		E5168CD72132DC1A007AD570 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E5168CD92132DD8C007AD570 /* HomeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCell.swift; sourceTree = "<group>"; };
+		E53455C521421567004C611B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E53455C72143F901004C611B /* FireBaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseUtils.swift; sourceTree = "<group>"; };
 		E58238AF212A70C1009AB631 /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = "<group>"; };
 		E582B9AF212798C200E34FDC /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		E582B9B12128C8B400E34FDC /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
@@ -165,6 +173,15 @@
 			path = LogIn;
 			sourceTree = "<group>";
 		};
+		E5168CD62132DBFD007AD570 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E5168CD72132DC1A007AD570 /* HomeViewController.swift */,
+				E5168CD92132DD8C007AD570 /* HomeViewCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		E582B9AE2127989A00E34FDC /* Add Photo */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				E582B9BA212A4F6600E34FDC /* PostModel.swift */,
+				E53455C521421567004C611B /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -209,6 +227,7 @@
 		E5D3D25620648BCB00F53423 /* Lets Wander */ = {
 			isa = PBXGroup;
 			children = (
+				E5168CD62132DBFD007AD570 /* Home */,
 				E582B9B9212A4D6A00E34FDC /* Model */,
 				E582B9AE2127989A00E34FDC /* Add Photo */,
 				E50592EC20783FDC00CA04B4 /* LogIn */,
@@ -252,6 +271,7 @@
 				E50592E8206F296400CA04B4 /* UIView+Gradient.swift */,
 				E50592EA206F2AC900CA04B4 /* Colors.swift */,
 				E5168CD42131BBA4007AD570 /* CustomImageView.swift */,
+				E53455C72143F901004C611B /* FireBaseUtils.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -558,9 +578,11 @@
 			files = (
 				E5D3D25A20648BCB00F53423 /* SignUpController.swift in Sources */,
 				E5168CD52131BBA4007AD570 /* CustomImageView.swift in Sources */,
+				E5168CD82132DC1A007AD570 /* HomeViewController.swift in Sources */,
 				E582B9BB212A4F6600E34FDC /* PostModel.swift in Sources */,
 				E50592EB206F2AC900CA04B4 /* Colors.swift in Sources */,
 				E50592E9206F296400CA04B4 /* UIView+Gradient.swift in Sources */,
+				E53455C82143F901004C611B /* FireBaseUtils.swift in Sources */,
 				E582B9B0212798C200E34FDC /* PhotoSelectorController.swift in Sources */,
 				E5D3D26020648BCB00F53423 /* Lets_Wander.xcdatamodeld in Sources */,
 				E5D3D2922068700B00F53423 /* UserProfileViewController.swift in Sources */,
@@ -572,8 +594,10 @@
 				E5D3D25820648BCB00F53423 /* AppDelegate.swift in Sources */,
 				E582B9B22128C8B400E34FDC /* PhotoSelectorCell.swift in Sources */,
 				E5D3D28A20648F9B00F53423 /* UIAnchor.swift in Sources */,
+				E5168CDA2132DD8C007AD570 /* HomeViewCell.swift in Sources */,
 				E50592EE2078400600CA04B4 /* LogInController.swift in Sources */,
 				E5D3D28C2065C14F00F53423 /* UIColor.swift in Sources */,
+				E53455C621421567004C611B /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

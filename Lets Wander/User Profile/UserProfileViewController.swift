@@ -28,40 +28,31 @@ class UserProfileViewController: UICollectionViewController,UICollectionViewDele
     }
     
     var posts = [PostModel]()
-    func fetchOrderedPosts() {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-        let ref = Database.database().reference().child("posts").child(uid)
-        //Implement Pagination at the end of the lession
-        ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
-            guard let dictionary = snapshot.value as? [String: Any] else {return}
-            let post = PostModel(dictionary: dictionary)
-            self.posts.append(post)
-            self.collectionView?.reloadData()
-        }) { (err) in
-            print("Could not fetch ordered posts....")
-        }
-    }
-     func fetchPosts() {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-        let ref = Database.database().reference().child("posts").child(uid)
-        ref.observe(.value, with: { (snapshot) in
-            // print(snapshot.value ?? "")
-            guard let dictionaries = snapshot.value as? [String: Any] else {return}
-            dictionaries.forEach({ (key, value) in
-             // print("Key \(key), Value: \(value)")
-                guard let dictionary = value as? [String: Any] else {return}
-                let post = PostModel(dictionary: dictionary)
-                //print(post.imageURL)
-                self.posts.append(post)
-                
-            })
-            
-            self.collectionView?.reloadData()
-        }) { (err) in
-            print("Failed to post error", err)
-        }
-    }
+    var user: User?
     
+    func fetchOrderedPosts() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let ref = Database.database().reference().child("posts").child(uid)
+        
+        //perhaps later on we'll implement some pagination of data
+        ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            print("**********")
+            print(dictionary)
+            guard let uid = Auth.auth().currentUser?.uid else {return}
+            // Improve this line of Code
+            Database.fetchUserWithID(uid: uid) { (user) in
+                self.user = user
+                let post = PostModel(user: user, dictionary: dictionary)
+                self.posts.insert(post, at: 0)
+                self.collectionView?.reloadData()
+            }
+            
+        }) { (err) in
+            print("Failed to fetch ordered posts:", err)
+        }
+    }
+
     fileprivate func setUpLogOutButton(){
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear").withRenderingMode(.alwaysOriginal) ,style: .plain, target: self, action: #selector(handleLogOut))
     }
@@ -112,6 +103,7 @@ class UserProfileViewController: UICollectionViewController,UICollectionViewDele
     
     //Returns number of variables
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("Post Counts", posts.count)
         return posts.count
     }
     
@@ -138,41 +130,18 @@ class UserProfileViewController: UICollectionViewController,UICollectionViewDele
         return 1
     }
     
-    
-    
-    
-    
-    
-    
     //Fetch the current user from Firebase and display the same on the userprofile heading
-    var user: User?
+    
     fileprivate func fetchUser(){
         
         guard let uid = Auth.auth().currentUser?.uid else {return}
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            print(snapshot.value ?? "")
-            guard let dictionary = snapshot.value as? [String:Any] else {return}
-//            let profileImageUrl = userInfoDictionary["ProfileImageURL"] value as? String
-//            let userName = userInfoDictionary["username"] as? String
-            
-            self.user = User(dictionary: dictionary)
-            print("UserName",self.user?.username)
+        Database.fetchUserWithID(uid: uid) { (user) in
+            self.user = user
             self.navigationItem.title = self.user?.username
             self.collectionView?.reloadData()
-        }) { (err) in
-            print("Failed to fetch user",err)
         }
-        
     }
 }
 
-struct User {
-    let username: String
-    let profileImageUrl: String
-    init(dictionary: [String: Any]) {
-        self.username = dictionary["username"] as? String ?? ""
-        self.profileImageUrl = dictionary["ProfileImageURL"] as? String ?? ""
-    }
-    
-}
+
 

@@ -47,7 +47,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     func setUpViewControllers() {
         //Home Profile Controller
-        let homeProfileViewController = temlateNavContorller(unselectedImage: #imageLiteral(resourceName: "icons8-home-50 (1)"), selectedImage: #imageLiteral(resourceName: "icons8-home-filled-50 (1)"), rootViewController: UserProfileViewController(collectionViewLayout: UICollectionViewFlowLayout()))
+        let homeProfileViewController = temlateNavContorller(unselectedImage: #imageLiteral(resourceName: "icons8-home-50 (1)"), selectedImage: #imageLiteral(resourceName: "icons8-home-filled-50 (1)"), rootViewController: HomeViewController(collectionViewLayout: UICollectionViewFlowLayout()))
         
         let photoSelectionContorller = temlateNavContorller(unselectedImage: #imageLiteral(resourceName: "plus-photo-button"), selectedImage: #imageLiteral(resourceName: "plus-photo-button"), rootViewController: UserProfileViewController(collectionViewLayout: UICollectionViewFlowLayout()))
         let layout = UICollectionViewFlowLayout()
