@@ -17,7 +17,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let index = viewControllers?.index(of: viewController)
         print(index ?? "")
         
-        if index == 1 {
+        if index == 2 {
             let layout = UICollectionViewFlowLayout()
             let photoSelectorController =  PhotoSelectorClass(collectionViewLayout: layout)
             let photoNavContorller = UINavigationController(rootViewController: photoSelectorController)
@@ -49,15 +49,21 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         //Home Profile Controller
         let homeProfileViewController = temlateNavContorller(unselectedImage: #imageLiteral(resourceName: "icons8-home-50 (1)"), selectedImage: #imageLiteral(resourceName: "icons8-home-filled-50 (1)"), rootViewController: HomeViewController(collectionViewLayout: UICollectionViewFlowLayout()))
         
+        let searchProfileViewController = temlateNavContorller(unselectedImage: #imageLiteral(resourceName: "search"), selectedImage: #imageLiteral(resourceName: "search"), rootViewController: SearchViewController(collectionViewLayout: UICollectionViewFlowLayout()))
+        
+        
         let photoSelectionContorller = temlateNavContorller(unselectedImage: #imageLiteral(resourceName: "plus-photo-button"), selectedImage: #imageLiteral(resourceName: "plus-photo-button"), rootViewController: UserProfileViewController(collectionViewLayout: UICollectionViewFlowLayout()))
+        
         let layout = UICollectionViewFlowLayout()
         let userProfileViewController = UserProfileViewController(collectionViewLayout: layout)
         //Add a Navigation Controller - Step02
         let userProfileNavController = UINavigationController(rootViewController: userProfileViewController)
         userProfileNavController.tabBarItem.image = #imageLiteral(resourceName: "profile_unselected")
         userProfileNavController.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected")
-        tabBar.tintColor = UIColor.blue
-        viewControllers = [homeProfileViewController, photoSelectionContorller, userProfileNavController]
+        tabBar.tintColor = UIColor.black
+        
+        
+        viewControllers = [homeProfileViewController, searchProfileViewController, photoSelectionContorller, userProfileNavController]
         
         //Modify Tab bar Insets - Not Documented on IOS Documentation
         

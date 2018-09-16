@@ -10,6 +10,18 @@ import UIKit
 import Firebase
 
 class UserProfileHeader: UICollectionViewCell {
+    
+    //Set up profile image
+    var user: User? {
+        
+        didSet{
+            guard let profileImageUrl = user?.profileImageUrl else {return}
+            profileImageView.loadImage(urlString: profileImageUrl)
+            userNameLebel.text = user?.username
+            setUpEditProfileButton()
+        }
+        
+    }
 
     
     let profileImageView: CustomImageView = {
@@ -81,10 +93,8 @@ class UserProfileHeader: UICollectionViewCell {
     
     let followesLabel: UILabel = {
         let label = UILabel()
-//        label.text = "0\nfollowers"
         let attributedText = NSMutableAttributedString(string: "0\n",
                                                        attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
-        
         attributedText.append(NSAttributedString(string: "Followers", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]))
         label.attributedText = attributedText
         label.numberOfLines = 0
@@ -109,18 +119,58 @@ class UserProfileHeader: UICollectionViewCell {
         return label
     }()
     
-    let editProfileButton: UIButton = {
+    lazy var editProfileButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Edit Profiles", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 2
+        button.addTarget(self, action: #selector(editProfileOrFollow), for: .touchUpInside)
         return button
     }()
     
     
+    @objc  func editProfileOrFollow() {
+        print("Implement logic to edit profile / follow / unfollow logic...")
+        guard let currentLoggedInUser = Auth.auth().currentUser?.uid else {return}
+        guard let userID = user?.uid else {return}
+        //Unfollow Logic
+        if editProfileButton.titleLabel?.text == "Unfollow" {
+            Database.database().reference().child("Following").child(currentLoggedInUser).child(userID).removeValue { (err, ref) in
+                if let err = err {
+                    print("Failed to unfollow user", err)
+                    return
+                }
+                print("Successfully unfollowed the user:", self.user?.username ?? "")
+               self.setUpFollowStyling()
+            }
+            
+        }else {
+            //Follow Logic
+            let ref = Database.database().reference().child("Following").child(currentLoggedInUser)
+            let values = [userID: 1]
+            ref.updateChildValues(values) { (err, ref) in
+                if let err = err {
+                    print("Failed to update value for following infomration in DB", err)
+                    return
+                }
+                print("Successfuly followed the user: ", self.user?.username ?? "")
+                self.editProfileButton.setTitle("Unfollow", for: .normal)
+                self.editProfileButton.backgroundColor = UIColor.white
+                self.editProfileButton.setTitleColor(UIColor.black, for: .normal)
+            }
+        }
+        
+        
+    }
     
+    fileprivate func setUpFollowStyling() {
+        self.editProfileButton.setTitle("Follow", for: .normal)
+        self.editProfileButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237, alpha: 1)
+        self.editProfileButton.setTitleColor(UIColor.white, for: .normal)
+        self.editProfileButton.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -178,15 +228,28 @@ class UserProfileHeader: UICollectionViewCell {
     }
     
     
-    //Set up profile image
-    var user: User? {
+
+    
+    fileprivate func setUpEditProfileButton() {
+        guard let currentLoggedInuserID = Auth.auth().currentUser?.uid else {return}
+        guard let userId = user?.uid else {return}
         
-        didSet{
-            guard let profileImageUrl = user?.profileImageUrl else {return}
-            profileImageView.loadImage(urlString: profileImageUrl)
-            //setUpProfileImage()
-            userNameLebel.text = user?.username
+        if currentLoggedInuserID == userId {
             
+        }else {
+           //Check if following
+            Database.database().reference().child("Following").child(currentLoggedInuserID).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let isFollowing = snapshot.value as? Int, isFollowing == 1 {
+                    
+                    self.editProfileButton.setTitle("Unfollow", for: .normal)
+                }else{
+                    self.setUpFollowStyling()
+                }
+            }) { (err) in
+                print("Could not fetch the following information", err)
+            }
+            
+         
         }
         
     }

@@ -19,6 +19,22 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         collectionView?.register(HomeViewCell.self, forCellWithReuseIdentifier: "homeID")
         setUpNavigationItems()
         fetchPosts()
+        fetchFollowingUserIds()
+    }
+    
+    fileprivate func fetchFollowingUserIds() {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        Database.database().reference().child("Following").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            print(snapshot.value ?? "")
+            guard let userDictionary = snapshot.value as? [String: Any] else {return}
+            userDictionary.forEach({ (key, value) in
+                Database.fetchUserWithID(uid: key, completion: { (user) in
+                    self.fetchPostswithUser(user: user)
+                })
+            })
+        }) { (err) in
+            print("Could not fetch followers of current ID:", err )
+        }
     }
 
     func setUpNavigationItems() {
@@ -45,6 +61,10 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
                 guard let dictionary = value as? [String: Any] else {return}
                 let post = PostModel(user: user, dictionary: dictionary)
                 self.posts.append(post)
+            })
+            
+            self.posts.sort(by: { (p1, p2) -> Bool in
+                return p1.creationDate.compare(p2.creationDate) == .orderedDescending
             })
             self.collectionView?.reloadData()
         }) { (err) in

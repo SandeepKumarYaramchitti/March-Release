@@ -10,20 +10,14 @@ import UIKit
 import Firebase
 
 class UserProfileViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
+    
+    var userId: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.backgroundColor = .white
-        navigationItem.title = "Lets Wander" //Set the Navigation Bar Heading
-        
-        //Get the current user from the Firebase
-        navigationItem.title = Auth.auth().currentUser?.uid
-        fetchUser()
-        //Register Header
         registerCollectionCells()
-        //SetUp Logout Button
         setUpLogOutButton()
-        //fetchPosts()
-        fetchOrderedPosts()
+        fetchUser()
         
     }
     
@@ -31,22 +25,33 @@ class UserProfileViewController: UICollectionViewController,UICollectionViewDele
     var user: User?
     
     func fetchOrderedPosts() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let ref = Database.database().reference().child("posts").child(uid)
+//        guard let uid = self.user?.uid else {return}
+//        let ref = Database.database().reference().child("posts").child(uid)
+//
+//        //perhaps later on we'll implement some pagination of data
+//        ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
+//            guard let dictionary = snapshot.value as? [String: Any] else { return }
+//            print("**********")
+//            print(dictionary)
+//            guard let uid = Auth.auth().currentUser?.uid else {return}
+//            // Improve this line of Code
+//            Database.fetchUserWithID(uid: uid) { (user) in
+//                self.user = user
+//                let post = PostModel(user: user, dictionary: dictionary)
+//                self.posts.insert(post, at: 0)
+//                self.collectionView?.reloadData()
+//            }
         
+        guard let uid = self.user?.uid else { return }
+        let ref = Database.database().reference().child("posts").child(uid)
         //perhaps later on we'll implement some pagination of data
         ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
+            
             guard let dictionary = snapshot.value as? [String: Any] else { return }
-            print("**********")
-            print(dictionary)
-            guard let uid = Auth.auth().currentUser?.uid else {return}
-            // Improve this line of Code
-            Database.fetchUserWithID(uid: uid) { (user) in
-                self.user = user
-                let post = PostModel(user: user, dictionary: dictionary)
-                self.posts.insert(post, at: 0)
-                self.collectionView?.reloadData()
-            }
+            guard let user = self.user else { return }
+            let post = PostModel(user: user, dictionary: dictionary)
+            self.posts.insert(post, at: 0)
+            self.collectionView?.reloadData()
             
         }) { (err) in
             print("Failed to fetch ordered posts:", err)
@@ -134,11 +139,14 @@ class UserProfileViewController: UICollectionViewController,UICollectionViewDele
     
     fileprivate func fetchUser(){
         
-        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let uid = userId ?? Auth.auth().currentUser?.uid ?? ""
+        
+//        guard let uid = Auth.auth().currentUser?.uid else {return}
         Database.fetchUserWithID(uid: uid) { (user) in
             self.user = user
             self.navigationItem.title = self.user?.username
             self.collectionView?.reloadData()
+            self.fetchOrderedPosts()
         }
     }
 }

@@ -31,7 +31,10 @@ class HomeViewCell: UICollectionViewCell {
         attributedText.append(NSMutableAttributedString(string: " \(post.capTion)", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 11)]))
         attributedText.append(NSMutableAttributedString(string: "\n\n", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 4)]))
         
-        attributedText.append(NSMutableAttributedString(string: "1 week ago", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.red]))
+        //Actual Time Display
+        let timeAgoDisplay = post.creationDate.description
+        
+        attributedText.append(NSMutableAttributedString(string: timeAgoDisplay, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.red]))
         captionButton.attributedText = attributedText
     }
     
