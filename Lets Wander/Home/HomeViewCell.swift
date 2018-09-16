@@ -32,7 +32,7 @@ class HomeViewCell: UICollectionViewCell {
         attributedText.append(NSMutableAttributedString(string: "\n\n", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 4)]))
         
         //Actual Time Display
-        let timeAgoDisplay = post.creationDate.description
+        let timeAgoDisplay = post.creationDate.timeAgoDisplay()
         
         attributedText.append(NSMutableAttributedString(string: timeAgoDisplay, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.red]))
         captionButton.attributedText = attributedText

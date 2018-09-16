@@ -21,6 +21,7 @@
 		E53455C82143F901004C611B /* FireBaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53455C72143F901004C611B /* FireBaseUtils.swift */; };
 		E53455CB21447913004C611B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53455CA21447913004C611B /* SearchViewController.swift */; };
 		E53455CD214480A6004C611B /* SearchViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53455CC214480A6004C611B /* SearchViewCell.swift */; };
+		E53455CF214E125C004C611B /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53455CE214E125C004C611B /* Date.swift */; };
 		E58238B0212A70C1009AB631 /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58238AF212A70C1009AB631 /* UserProfilePhotoCell.swift */; };
 		E582B9B0212798C200E34FDC /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582B9AF212798C200E34FDC /* PhotoSelectorController.swift */; };
 		E582B9B22128C8B400E34FDC /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582B9B12128C8B400E34FDC /* PhotoSelectorCell.swift */; };
@@ -78,6 +79,7 @@
 		E53455C72143F901004C611B /* FireBaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseUtils.swift; sourceTree = "<group>"; };
 		E53455CA21447913004C611B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		E53455CC214480A6004C611B /* SearchViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewCell.swift; sourceTree = "<group>"; };
+		E53455CE214E125C004C611B /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		E58238AF212A70C1009AB631 /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = "<group>"; };
 		E582B9AF212798C200E34FDC /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		E582B9B12128C8B400E34FDC /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				E50592EA206F2AC900CA04B4 /* Colors.swift */,
 				E5168CD42131BBA4007AD570 /* CustomImageView.swift */,
 				E53455C72143F901004C611B /* FireBaseUtils.swift */,
+				E53455CE214E125C004C611B /* Date.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				E5168CD82132DC1A007AD570 /* HomeViewController.swift in Sources */,
 				E582B9BB212A4F6600E34FDC /* PostModel.swift in Sources */,
 				E50592EB206F2AC900CA04B4 /* Colors.swift in Sources */,
+				E53455CF214E125C004C611B /* Date.swift in Sources */,
 				E50592E9206F296400CA04B4 /* UIView+Gradient.swift in Sources */,
 				E53455C82143F901004C611B /* FireBaseUtils.swift in Sources */,
 				E582B9B0212798C200E34FDC /* PhotoSelectorController.swift in Sources */,
