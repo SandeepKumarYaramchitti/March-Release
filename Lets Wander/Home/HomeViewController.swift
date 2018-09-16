@@ -62,6 +62,13 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
 
     func setUpNavigationItems() {
         navigationItem.title = "Let's Wander"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Camera").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleCamera))
+    }
+    
+    @objc fileprivate func handleCamera() {
+        print("Handling Camera")
+        let cameraController = CameraController()
+        present(cameraController, animated: true, completion: nil)
     }
     
     //Fetch posts and we will use fetch with regular option

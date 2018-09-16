@@ -41,6 +41,7 @@
 		E5D3D28E2065C50500F53423 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E5D3D28D2065C50500F53423 /* GoogleService-Info.plist */; };
 		E5D3D29020686E4500F53423 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D3D28F20686E4500F53423 /* MainTabBarController.swift */; };
 		E5D3D2922068700B00F53423 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D3D2912068700B00F53423 /* UserProfileViewController.swift */; };
+		E5E9B776214EF685006396D2 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9B775214EF685006396D2 /* CameraController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		E5D3D28D2065C50500F53423 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E5D3D28F20686E4500F53423 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E5D3D2912068700B00F53423 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		E5E9B775214EF685006396D2 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		F47F0FE9D173BC7D4181494F /* Pods-Lets WanderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lets WanderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lets WanderTests/Pods-Lets WanderTests.release.xcconfig"; sourceTree = "<group>"; };
 		F50737ACFD5BE04C82BE1C93 /* Pods-Lets Wander.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lets Wander.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lets Wander/Pods-Lets Wander.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -242,6 +244,7 @@
 		E5D3D25620648BCB00F53423 /* Lets Wander */ = {
 			isa = PBXGroup;
 			children = (
+				E5E9B774214EF66C006396D2 /* Camera */,
 				E53455C9214478F7004C611B /* Search */,
 				E5168CD62132DBFD007AD570 /* Home */,
 				E582B9B9212A4D6A00E34FDC /* Model */,
@@ -291,6 +294,14 @@
 				E53455CE214E125C004C611B /* Date.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		E5E9B774214EF66C006396D2 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				E5E9B775214EF685006396D2 /* CameraController.swift */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -617,6 +628,7 @@
 				E5168CDA2132DD8C007AD570 /* HomeViewCell.swift in Sources */,
 				E50592EE2078400600CA04B4 /* LogInController.swift in Sources */,
 				E5D3D28C2065C14F00F53423 /* UIColor.swift in Sources */,
+				E5E9B776214EF685006396D2 /* CameraController.swift in Sources */,
 				E53455C621421567004C611B /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
