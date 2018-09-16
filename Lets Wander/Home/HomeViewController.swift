@@ -9,15 +9,38 @@
 import UIKit
 import Firebase
 
-
-
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Automatic Refresh of the page
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: SharePhotoController.updateNotificationName, object: nil)
+        
         collectionView?.backgroundColor = UIColor.white
         collectionView?.register(HomeViewCell.self, forCellWithReuseIdentifier: "homeID")
+        
+        //Set Up refresh Controller
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefreshController), for: .valueChanged)
+        collectionView?.refreshControl = refreshControl
         setUpNavigationItems()
+        fetchAllPosts()
+    }
+    
+    @objc fileprivate func handleUpdateFeed() {
+        handleRefreshController()
+    }
+    
+    @objc fileprivate func handleRefreshController() {
+        print("Handling Refresh..")
+        posts.removeAll()
+        fetchAllPosts()
+        
+    }
+    
+    fileprivate func fetchAllPosts() {
         fetchPosts()
         fetchFollowingUserIds()
     }
@@ -56,6 +79,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     fileprivate func fetchPostswithUser(user: User) {
         let ref = Database.database().reference().child("posts").child(user.uid)
         ref.observe(.value, with: { (snapshot) in
+            self.collectionView?.refreshControl?.endRefreshing()
             guard let dictionaries = snapshot.value as? [String: Any] else {return}
             dictionaries.forEach({ (key, value) in
                 guard let dictionary = value as? [String: Any] else {return}

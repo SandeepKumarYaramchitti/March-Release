@@ -27,7 +27,6 @@ class SharePhotoController: UIViewController {
     
     @objc fileprivate func handleShare(){
         print("Shared Shared and Shared!!!!")
-        guard let caption = addTextView.text, caption.characters.count > 0 else {return}
         let fileName = NSUUID().uuidString
         guard let image = selectedImage else {return}
         navigationItem.rightBarButtonItem?.isEnabled = false
@@ -46,7 +45,7 @@ class SharePhotoController: UIViewController {
             self.saveImagetoFirebaseDB(imageURL: imageURL)
         }
     }
-    
+    static let updateNotificationName = NSNotification.Name(rawValue: "UpdatedFeed")
     fileprivate func saveImagetoFirebaseDB(imageURL: String) {
         guard let postImage = selectedImage else {return}
         guard let caption = addTextView.text else {return}
@@ -62,6 +61,10 @@ class SharePhotoController: UIViewController {
             }
             print("Successfully Posted to DB")
             self.dismiss(animated: true, completion: nil)
+            
+            //Automatic Page refresh
+            
+            NotificationCenter.default.post(name: SharePhotoController.updateNotificationName, object: nil)
         }
     }
     
