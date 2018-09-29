@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class CameraController: UIViewController {
+class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     let nextPhotoButton: UIButton = {
         let button = UIButton()
@@ -18,6 +18,7 @@ class CameraController: UIViewController {
         return button
     }()
     
+   
     @objc fileprivate func handleNextButton() {
         print("Dismiss the window")
         dismiss(animated: true, completion: nil)
@@ -32,9 +33,36 @@ class CameraController: UIViewController {
         return button
     }()
     
-    @objc fileprivate func handleCapturePhoto() {
-        print("Handling Photo Capture.....")
+    @objc func handleCapturePhoto() {
+        print("Capturing photo...")
+        let settings = AVCapturePhotoSettings()
+        #if (!arch(x86_64))
+        guard let previewFormatType = settings.availablePreviewPhotoPixelFormatTypes.first else { return }
+        settings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewFormatType]
+        output.capturePhoto(with: settings, delegate: self)
+        #endif
     }
+    
+    func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+        
+        let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer!, previewPhotoSampleBuffer: previewPhotoSampleBuffer!)
+        let previewImage = UIImage(data: imageData!)
+        
+        let containerView = PreviewPhotoContainerView()
+        view.addSubview(containerView)
+        _ = containerView.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
+        containerView.previewImageView.image = previewImage
+        
+//
+//        let previewImageView = UIImageView(image: previewImage)
+//        view.addSubview(previewImageView)
+//        _ = previewImageView.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+//
+//        print("Finish processing photo sample buffer...")
+//
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +77,12 @@ class CameraController: UIViewController {
         _ = nextPhotoButton.anchor(view.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, topConstant: 20, leftConstant: 0, bottomConstant: 0, rightConstant: 10, widthConstant: 50, heightConstant: 50)
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    
+    let output = AVCapturePhotoOutput()
     fileprivate func setUpCaptureSessions() {
         let captureSession = AVCaptureSession()
         //1. Set up inputs
@@ -62,9 +96,8 @@ class CameraController: UIViewController {
             print("Could not set up the inputs", err)
         }
        
-        
         //2. Set up outputs
-        let output = AVCapturePhotoOutput()
+       
         if captureSession.canAddOutput(output){
             captureSession.addOutput(output)
         }
