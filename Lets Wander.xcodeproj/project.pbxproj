@@ -42,6 +42,8 @@
 		E5D3D28E2065C50500F53423 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E5D3D28D2065C50500F53423 /* GoogleService-Info.plist */; };
 		E5D3D29020686E4500F53423 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D3D28F20686E4500F53423 /* MainTabBarController.swift */; };
 		E5D3D2922068700B00F53423 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D3D2912068700B00F53423 /* UserProfileViewController.swift */; };
+		E5DAB136215F0D0800CF2958 /* CustomAnimationPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DAB135215F0D0800CF2958 /* CustomAnimationPresentor.swift */; };
+		E5DAB138215F14EA00CF2958 /* CustomAnimationDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DAB137215F14EA00CF2958 /* CustomAnimationDismiss.swift */; };
 		E5E9B776214EF685006396D2 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9B775214EF685006396D2 /* CameraController.swift */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +110,8 @@
 		E5D3D28D2065C50500F53423 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E5D3D28F20686E4500F53423 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E5D3D2912068700B00F53423 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		E5DAB135215F0D0800CF2958 /* CustomAnimationPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationPresentor.swift; sourceTree = "<group>"; };
+		E5DAB137215F14EA00CF2958 /* CustomAnimationDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationDismiss.swift; sourceTree = "<group>"; };
 		E5E9B775214EF685006396D2 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		F47F0FE9D173BC7D4181494F /* Pods-Lets WanderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lets WanderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lets WanderTests/Pods-Lets WanderTests.release.xcconfig"; sourceTree = "<group>"; };
 		F50737ACFD5BE04C82BE1C93 /* Pods-Lets Wander.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lets Wander.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lets Wander/Pods-Lets Wander.release.xcconfig"; sourceTree = "<group>"; };
@@ -303,6 +307,8 @@
 			children = (
 				E5E9B775214EF685006396D2 /* CameraController.swift */,
 				E542FFE32151EEBE00FB8EEC /* PreviewPhotoContainerView.swift */,
+				E5DAB135215F0D0800CF2958 /* CustomAnimationPresentor.swift */,
+				E5DAB137215F14EA00CF2958 /* CustomAnimationDismiss.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -628,12 +634,14 @@
 				E5D3D25820648BCB00F53423 /* AppDelegate.swift in Sources */,
 				E582B9B22128C8B400E34FDC /* PhotoSelectorCell.swift in Sources */,
 				E5D3D28A20648F9B00F53423 /* UIAnchor.swift in Sources */,
+				E5DAB136215F0D0800CF2958 /* CustomAnimationPresentor.swift in Sources */,
 				E5168CDA2132DD8C007AD570 /* HomeViewCell.swift in Sources */,
 				E50592EE2078400600CA04B4 /* LogInController.swift in Sources */,
 				E5D3D28C2065C14F00F53423 /* UIColor.swift in Sources */,
 				E5E9B776214EF685006396D2 /* CameraController.swift in Sources */,
 				E53455C621421567004C611B /* User.swift in Sources */,
 				E542FFE42151EEBE00FB8EEC /* PreviewPhotoContainerView.swift in Sources */,
+				E5DAB138215F14EA00CF2958 /* CustomAnimationDismiss.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

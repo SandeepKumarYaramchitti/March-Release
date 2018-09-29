@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
+class CameraController: UIViewController, AVCapturePhotoCaptureDelegate, UIViewControllerTransitioningDelegate {
     
     let nextPhotoButton: UIButton = {
         let button = UIButton()
@@ -54,18 +54,12 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         
         containerView.previewImageView.image = previewImage
         
-//
-//        let previewImageView = UIImageView(image: previewImage)
-//        view.addSubview(previewImageView)
-//        _ = previewImageView.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-//
-//        print("Finish processing photo sample buffer...")
-//
     }
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        transitioningDelegate = self
         setUpCaptureSessions()
         view.addSubview(capturePhotoButton)
         _ = capturePhotoButton.anchor(nil, left: nil, bottom: view.bottomAnchor, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 35, rightConstant: 0, widthConstant: 80, heightConstant: 80)
@@ -76,6 +70,20 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         view.addSubview(nextPhotoButton)
         _ = nextPhotoButton.anchor(view.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, topConstant: 20, leftConstant: 0, bottomConstant: 0, rightConstant: 10, widthConstant: 50, heightConstant: 50)
     }
+    
+    //Custom Animation presenter
+    let customAnimationPresentor = CustomAnimationPresentor()
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return customAnimationPresentor
+    }
+    
+    //Custom Animation Dismiss
+    let customAnimationDismiss = CustomAnimationDismiss()
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return customAnimationDismiss
+    }
+    
+
     
     override var prefersStatusBarHidden: Bool {
         return true
