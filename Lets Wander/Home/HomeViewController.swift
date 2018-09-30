@@ -9,8 +9,16 @@
 import UIKit
 import Firebase
 
-class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, HomePostCellDelegate {
+    func didTapComment(post: PostModel) {
+        print("Message coming from home controller")
+        print("Post the caption:", post.capTion )
+        let commentController = CommentController(collectionViewLayout: UICollectionViewFlowLayout())
+        commentController.post = post
+        navigationController?.pushViewController(commentController, animated: true)
+    }
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -90,7 +98,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             guard let dictionaries = snapshot.value as? [String: Any] else {return}
             dictionaries.forEach({ (key, value) in
                 guard let dictionary = value as? [String: Any] else {return}
-                let post = PostModel(user: user, dictionary: dictionary)
+                var post = PostModel(user: user, dictionary: dictionary)
+                post.id = key
                 self.posts.append(post)
             })
             
@@ -119,6 +128,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeID", for: indexPath) as! HomeViewCell
         cell.post = posts[indexPath.item]
+        cell.delegate = self
         return cell
     }
     

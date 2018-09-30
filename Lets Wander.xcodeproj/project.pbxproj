@@ -44,6 +44,9 @@
 		E5D3D2922068700B00F53423 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D3D2912068700B00F53423 /* UserProfileViewController.swift */; };
 		E5DAB136215F0D0800CF2958 /* CustomAnimationPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DAB135215F0D0800CF2958 /* CustomAnimationPresentor.swift */; };
 		E5DAB138215F14EA00CF2958 /* CustomAnimationDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DAB137215F14EA00CF2958 /* CustomAnimationDismiss.swift */; };
+		E5DAB13A215F1DA300CF2958 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DAB139215F1DA300CF2958 /* CommentController.swift */; };
+		E5DAB13C2161119800CF2958 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DAB13B2161119800CF2958 /* CommentCell.swift */; };
+		E5DAB13E2161150C00CF2958 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DAB13D2161150C00CF2958 /* Comment.swift */; };
 		E5E9B776214EF685006396D2 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9B775214EF685006396D2 /* CameraController.swift */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +115,9 @@
 		E5D3D2912068700B00F53423 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		E5DAB135215F0D0800CF2958 /* CustomAnimationPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationPresentor.swift; sourceTree = "<group>"; };
 		E5DAB137215F14EA00CF2958 /* CustomAnimationDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationDismiss.swift; sourceTree = "<group>"; };
+		E5DAB139215F1DA300CF2958 /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
+		E5DAB13B2161119800CF2958 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		E5DAB13D2161150C00CF2958 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		E5E9B775214EF685006396D2 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		F47F0FE9D173BC7D4181494F /* Pods-Lets WanderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lets WanderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lets WanderTests/Pods-Lets WanderTests.release.xcconfig"; sourceTree = "<group>"; };
 		F50737ACFD5BE04C82BE1C93 /* Pods-Lets Wander.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lets Wander.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lets Wander/Pods-Lets Wander.release.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +198,8 @@
 			children = (
 				E5168CD72132DC1A007AD570 /* HomeViewController.swift */,
 				E5168CD92132DD8C007AD570 /* HomeViewCell.swift */,
+				E5DAB139215F1DA300CF2958 /* CommentController.swift */,
+				E5DAB13B2161119800CF2958 /* CommentCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -221,6 +229,7 @@
 			children = (
 				E582B9BA212A4F6600E34FDC /* PostModel.swift */,
 				E53455C521421567004C611B /* User.swift */,
+				E5DAB13D2161150C00CF2958 /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -624,6 +633,7 @@
 				E53455C82143F901004C611B /* FireBaseUtils.swift in Sources */,
 				E582B9B0212798C200E34FDC /* PhotoSelectorController.swift in Sources */,
 				E5D3D26020648BCB00F53423 /* Lets_Wander.xcdatamodeld in Sources */,
+				E5DAB13A215F1DA300CF2958 /* CommentController.swift in Sources */,
 				E5D3D2922068700B00F53423 /* UserProfileViewController.swift in Sources */,
 				E50592E7206F06D700CA04B4 /* UserProfileHeader.swift in Sources */,
 				E5D3D29020686E4500F53423 /* MainTabBarController.swift in Sources */,
@@ -639,6 +649,8 @@
 				E50592EE2078400600CA04B4 /* LogInController.swift in Sources */,
 				E5D3D28C2065C14F00F53423 /* UIColor.swift in Sources */,
 				E5E9B776214EF685006396D2 /* CameraController.swift in Sources */,
+				E5DAB13E2161150C00CF2958 /* Comment.swift in Sources */,
+				E5DAB13C2161119800CF2958 /* CommentCell.swift in Sources */,
 				E53455C621421567004C611B /* User.swift in Sources */,
 				E542FFE42151EEBE00FB8EEC /* PreviewPhotoContainerView.swift in Sources */,
 				E5DAB138215F14EA00CF2958 /* CustomAnimationDismiss.swift in Sources */,

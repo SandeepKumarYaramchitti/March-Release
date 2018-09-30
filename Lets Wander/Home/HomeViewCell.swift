@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol HomePostCellDelegate {
+    func didTapComment(post: PostModel)
+}
+
 class HomeViewCell: UICollectionViewCell {
+    
+    var delegate: HomePostCellDelegate?
     
     var post: PostModel? {
         didSet {
@@ -60,7 +66,7 @@ class HomeViewCell: UICollectionViewCell {
         return label
     }()
     
-    let optionsButton: UIButton = {
+    lazy var optionsButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("•••", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
@@ -73,12 +79,18 @@ class HomeViewCell: UICollectionViewCell {
         return button
     }()
     
-    let heartButton: UIButton = {
+    lazy var heartButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
+        button.addTarget(self, action: #selector(handleCommentButton), for: .touchUpInside)
         return button
     }()
     
+    @objc fileprivate func handleCommentButton() {
+        print("Trying to handle comments..")
+        guard let post = self.post else {return}
+        delegate?.didTapComment(post: post)
+    }
     
     let refreshButton: UIButton = {
         let button = UIButton(type: .system)
