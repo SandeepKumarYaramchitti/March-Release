@@ -17,7 +17,9 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
         
         super.viewDidLoad()
         navigationItem.title = "Comments"
-        collectionView?.backgroundColor = UIColor.gray
+        collectionView?.backgroundColor = UIColor.white
+        collectionView?.alwaysBounceVertical = true
+        collectionView?.keyboardDismissMode = .interactive
         collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: -50, right: 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: -50, right: 0)
         collectionView?.register(CommentCell.self, forCellWithReuseIdentifier: cellID)
@@ -32,11 +34,14 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
             print(snapshot.value ?? "")
             
             guard let dictionary = snapshot.value as? [String:Any] else {return}
-            let comment = Comment(dictionary: dictionary)
-            print("Printing the comments on the line")
-            print(comment.text, comment.uid)
-            self.comments.append(comment)
-            self.collectionView?.reloadData()
+            
+            guard let uid = dictionary["uid"] as? String else {return}
+            Database.fetchUserWithID(uid: uid, completion: { (user) in
+                let comment = Comment(user: user, dictionary: dictionary)
+                self.comments.append(comment)
+                self.collectionView?.reloadData()
+            })
+            
         }) { (err) in
             print("Error in fetching the data..", err)
         }
@@ -46,6 +51,10 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
         return comments.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! CommentCell
         cell.comment = self.comments[indexPath.item]
@@ -53,7 +62,16 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 50)
+        
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+        let dummyCell = CommentCell(frame: frame)
+        dummyCell.comment = comments[indexPath.item]
+        dummyCell.layoutIfNeeded()
+        
+        let targetSize = CGSize(width: view.frame.width, height: 1000)
+        let estimatedSize =  dummyCell.systemLayoutSizeFitting(targetSize)
+        let height = max(40 + 8 + 8, estimatedSize.height)
+        return CGSize(width: view.frame.width, height: height)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,7 +86,7 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
     
     lazy var containerView: UIView =  {
         let containerView = UIView()
-        containerView.backgroundColor = UIColor.white
+//        containerView.backgroundColor = UIColor.white
         containerView.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
         
         let sendButton =  UIButton(type: .system)
@@ -82,6 +100,11 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
   
         containerView.addSubview(self.containerTextView)
         _ = self.containerTextView.anchor(containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: sendButton.leftAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
+        let lineSeparatorView = UIView()
+        lineSeparatorView.backgroundColor = UIColor.rgb(red: 230, green: 230, blue: 230, alpha: 1)
+        containerView.addSubview(lineSeparatorView)
+        _ = lineSeparatorView.anchor(containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0.5)
         return containerView
     }()
     
