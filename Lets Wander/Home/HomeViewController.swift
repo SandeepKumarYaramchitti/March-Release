@@ -18,6 +18,34 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         navigationController?.pushViewController(commentController, animated: true)
     }
     
+    func didLike(for cell: HomeViewCell) {
+        print("Controlling inside the Home View controller")
+        
+        guard let indexPath = collectionView?.indexPath(for: cell) else {return}
+        var post = self.posts[indexPath.item]
+        print(post.capTion)
+        guard let postID = post.id else {return}
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        
+        let values = [uid: post.hasLiked == true ? 0:1]
+        
+        Database.database().reference().child("likes").child(postID).updateChildValues(values) { (err, _) in
+            
+            if let err = err {
+                print("Failed to like posts:", err)
+                return
+            }
+            
+            print("Successfully updated the like information in DB")
+            post.hasLiked = !post.hasLiked
+            self.posts[indexPath.item] = post
+            self.collectionView?.reloadItems(at: [indexPath])
+            
+            
+        }
+        
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,13 +128,31 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
                 guard let dictionary = value as? [String: Any] else {return}
                 var post = PostModel(user: user, dictionary: dictionary)
                 post.id = key
-                self.posts.append(post)
+                
+                guard let uid = Auth.auth().currentUser?.uid else {return}
+                
+                Database.database().reference().child("likes").child(key).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    print(snapshot)
+                    if let value = snapshot.value as? Int, value == 1 {
+                        post.hasLiked = true
+                    }else {
+                        post.hasLiked = false
+                    }
+                    self.posts.append(post)
+                    self.posts.sort(by: { (p1, p2) -> Bool in
+                        return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+                    })
+                    
+                    self.collectionView?.reloadData()
+                }, withCancel: { (err) in
+                    print("Failed to fetch the data")
+                    return
+                })
+                
+                
             })
             
-            self.posts.sort(by: { (p1, p2) -> Bool in
-                return p1.creationDate.compare(p2.creationDate) == .orderedDescending
-            })
-            self.collectionView?.reloadData()
+            
         }) { (err) in
             print("error and could not fetch user details", err)
         }
